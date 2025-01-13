@@ -1,0 +1,36 @@
+name: Continuous Integration
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  build:
+    name: Build netconsd
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - cc: gcc
+            cxx: g++
+          - cc: clang
+            cxx: clang++
+    env:
+      CC: ${{ matrix.cc }}
+      CXX: ${{ matrix.cxx }}
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Build netconsd
+      run: make
+    - name: Build netconsblaster
+      run: make -C util
+  markdown:
+    name: Markdown
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Lint Markdown
+      uses: actionshub/markdownlint@2.0.2
+    - name: Check links
+      uses: gaurav-nelson/github-action-markdown-link-check@1.0.13
