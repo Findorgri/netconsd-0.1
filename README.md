@@ -1,4 +1,4 @@
-## Netconsd: The Netconsole Daemon
+### Netconsd: The Netconsole Daemon
 
 [![Continuous Integration](https://github.com/facebook/netconsd/workflows/Continuous%20Integration/badge.svg?event=push)](https://github.com/facebook/netconsd/actions?query=workflow%3A%22Continuous+Integration%22)
 
